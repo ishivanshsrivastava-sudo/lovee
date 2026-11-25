@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>I’m Sorry</title>
+<style>
+:root{--bg1:#fff1f3;--bg2:#ffe0e8;--ink:#4a2030;--soft:#8a5565;--card:#ffffffcc;--accent:#d6336c;--accent2:#ff6b8f;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#2a1420;--bg2:#1c0d16;--ink:#fbe6ec;--soft:#d9a8b8;--card:#3a1c2acc;--accent:#ff6b8f;--accent2:#ff8fa8;color-scheme:dark}}
+:root[data-theme="dark"]{--bg1:#2a1420;--bg2:#1c0d16;--ink:#fbe6ec;--soft:#d9a8b8;--card:#3a1c2acc;--accent:#ff6b8f;--accent2:#ff8fa8;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(160deg,var(--bg1),var(--bg2));color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.7;overflow-x:hidden}
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.hearts span{position:absolute;bottom:-40px;color:var(--accent2);opacity:.35;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+main{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 20px 60px}
+section{padding:56px 0 8px;animation:fade .9s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero{text-align:center;padding-top:80px}
+.hero .big{font-size:clamp(40px,10vw,68px);margin:0;color:var(--accent);line-height:1.1}
+.hero p{color:var(--soft);font-size:18px;margin-top:14px}
+.card{background:var(--card);backdrop-filter:blur(6px);border-radius:20px;padding:26px 24px;box-shadow:0 10px 30px #d6336c22}
+h2{font-size:24px;margin:0 0 14px;color:var(--accent)}
+.card p{margin:0 0 14px}
+.card p:last-child{margin:0}
+ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+li{display:flex;gap:12px;align-items:flex-start;background:var(--card);border-radius:16px;padding:16px 18px}
+li b{color:var(--accent)}
+.ask{text-align:center}
+.ask h2{font-size:30px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px}
+button{font:inherit;font-size:17px;border:0;border-radius:999px;padding:13px 28px;cursor:pointer;transition:transform .15s}
+button:active{transform:scale(.96)}
+.yes{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 20px #d6336c44}
+.later{background:transparent;color:var(--soft);border:1.5px solid var(--soft)}
+#reply{min-height:80px;margin-top:22px;font-size:19px;color:var(--ink)}
+.sign{text-align:right;margin-top:18px;color:var(--soft);font-style:italic}
+.no{background:var(--card);color:var(--soft);border:1.5px solid var(--soft);transition:left .2s,top .2s}
+.stayrow{min-height:60px}
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;min-height:48px}
+#no{user-select:none;-webkit-user-select:none}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts" aria-hidden="true"></div>
+<main>
+  <section class="hero">
+    <h1 class="big">I’m so sorry,<br><span id="her">love</span></h1>
+    <p>I hurt you, and you deserve a real apology.</p>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>What I want to say</h2>
+      <p>I’ve been thinking about how I made you feel, and it breaks my heart. You trusted me with your feelings, and I let you down.</p>
+      <p>I’m not going to make excuses or tell you that you shouldn’t be upset. You have every right to be. What I did was wrong, and I take full responsibility for it.</p>
+      <p>I’m sorry for hurting you. I’m sorry that I made you feel unheard, unimportant, or alone. You are none of those things to me.</p>
+      <p class="sign">— <span id="me">Me</span></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What I promise to do</h2>
+    <ul>
+      <li><span>💬</span><div><b>Listen properly.</b> When you’re ready to talk, I’ll listen to understand you, not to defend myself.</div></li>
+      <li><span>🌱</span><div><b>Do better.</b> I’ll learn from this and actually change, not just say the words.</div></li>
+      <li><span>🤝</span><div><b>Give you space.</b> You can take all the time you need. I won’t rush you or pressure you.</div></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>One more thing</h2>
+      <p>You mean the world to me. The good moments we share matter far more to me than being right ever could. I would rather lose an argument a thousand times than lose the way you smile at me.</p>
+    </div>
+  </section>
+
+  <section class="ask">
+    <h2>Can you forgive me?</h2>
+    <p style="color:var(--soft)">Only when you’re ready. There’s no rush.</p>
+    <div class="btns">
+      <button class="yes" id="yes">Yes, I forgive you 💗</button>
+      <button class="later" id="later">I need more time</button>
+    </div>
+    <div id="reply" role="status"></div>
+  </section>
+
+  <section class="ask">
+    <h2>Do you want to stay with me?</h2>
+    <p style="color:var(--soft)">I’d choose you again, every single time.</p>
+    <div class="btns stayrow">
+      <button class="yes" id="stayYes">Yes, I want to stay 💞</button>
+      <button class="no" id="no">No</button>
+    </div>
+    <div id="stay" role="status" style="min-height:80px;margin-top:22px;font-size:19px"></div>
+  </section>
+</main>
+
+<script>
+// ✏️ EDIT THESE TWO NAMES
+var HER_NAME = "Ayushi";   // e.g. "Priya"
+var MY_NAME  = "Shivansh";   // e.g. "Shivansh"
+
+if (HER_NAME) document.getElementById('her').textContent = HER_NAME;
+if (MY_NAME) document.getElementById('me').textContent = MY_NAME;
+
+var box = document.getElementById('hearts');
+function heart(sizeMin, sizeMax, dur){
+  var s = document.createElement('span');
+  s.textContent = Math.random() > .5 ? '♥' : '❤';
+  s.style.left = Math.random()*100 + '%';
+  s.style.fontSize = (sizeMin + Math.random()*(sizeMax-sizeMin)) + 'px';
+  s.style.animationDuration = (dur + Math.random()*6) + 's';
+  box.appendChild(s);
+  setTimeout(function(){ s.remove(); }, (dur+7)*1000);
+}
+for (var i=0;i<14;i++) setTimeout(function(){ heart(14,34,12); }, i*500);
+setInterval(function(){ heart(14,34,12); }, 1400);
+
+var reply = document.getElementById('reply');
+document.getElementById('yes').onclick = function(){
+  reply.textContent = "Thank you. I promise I won’t take this for granted. I love you. 💗";
+  for (var i=0;i<30;i++) setTimeout(function(){ heart(20,48,5); }, i*80);
+};
+document.getElementById('later').onclick = function(){
+  reply.textContent = "That’s completely okay. Take all the time you need. I’ll be here, and I’m still sorry. 🤍";
+};
+var no = document.getElementById('no');
+function run(e){
+  if (e && e.preventDefault) e.preventDefault();
+  if (no.parentNode !== document.body) document.body.appendChild(no);
+  no.style.position = 'fixed';
+  no.style.margin = '0';
+  var w = Math.max(0, window.innerWidth - no.offsetWidth - 20);
+  var h = Math.max(0, window.innerHeight - no.offsetHeight - 90);
+  var px = parseFloat(no.style.left) || -999, py = parseFloat(no.style.top) || -999, x, y, t = 0;
+  do {
+    x = 10 + Math.random()*w;
+    y = 70 + Math.random()*h;
+    t++;
+  } while (t < 15 && Math.abs(x-px) + Math.abs(y-py) < 160);
+  no.style.left = x + 'px';
+  no.style.top = y + 'px';
+  no.style.zIndex = 5;
+}
+window.addEventListener('resize', function(){ if (no.style.position === 'fixed') run(); });
+['mouseover','pointerdown','touchstart','click','focus'].forEach(function(ev){ no.addEventListener(ev, run); });
+document.getElementById('stayYes').onclick = function(){
+  document.getElementById('stay').textContent = "Thank you for staying. I’ll spend every day showing you that you chose right. I love you. 💞";
+  for (var i=0;i<40;i++) setTimeout(function(){ heart(20,48,5); }, i*70);
+};
+</script>
+</body>
+</html>
